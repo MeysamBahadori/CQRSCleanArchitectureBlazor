@@ -1,3 +1,5 @@
+using Mc2.CrudTest.Infrastructure;
+
 namespace Mc2.CrudTest.API
 {
     public class Program
@@ -11,6 +13,9 @@ namespace Mc2.CrudTest.API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            //Modules DI
+            InfrastractureModule.AddInfrastractureDI(builder.Services, builder.Configuration);
 
             var app = builder.Build();
 

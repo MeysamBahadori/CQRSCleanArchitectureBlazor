@@ -23,4 +23,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastructure\Mc2.CrudTest.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
