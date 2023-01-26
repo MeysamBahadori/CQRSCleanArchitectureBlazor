@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Mc2.CrudTest.Infrastructure.Db;
+using Mc2.CrudTest.Domain.Repository;
+using Mc2.CrudTest.Infrastructure.Domain.Customers;
 
 namespace Mc2.CrudTest.Infrastructure;
 
@@ -19,6 +21,9 @@ public static class InfrastractureModule
                 sqlOpt.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
             });
         });
+
+
+        services.AddTransient<ICustomerRepository, CustomerRepository>();
 
         return services;
     }
