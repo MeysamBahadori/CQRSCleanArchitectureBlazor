@@ -1,4 +1,8 @@
+using Mc2.CrudTest.Application.Customers;
 using Mc2.CrudTest.Infrastructure;
+using System.Reflection;
+using MediatR;
+using Mc2.CrudTest.Application.Mappers;
 
 namespace Mc2.CrudTest.API
 {
@@ -8,7 +12,13 @@ namespace Mc2.CrudTest.API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            
+            //Todo: move to extention
+            builder.Services.AddAutoMapper(typeof(Program));
+            builder.Services.AddAutoMapper(typeof(CustomerMapperConfiguration));
+            builder.Services.AddAutoMapper(typeof(InfrastractureModule));
+
+            builder.Services.AddMediatR(Assembly.GetExecutingAssembly(), typeof(GetCustomerByIdQuery).Assembly);
+
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
