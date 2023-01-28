@@ -9,10 +9,13 @@ public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerComman
 {
     private readonly ICustomerRepository _customerRepository;
     private readonly ICustomerEmailUniquenessChecker _customerEmailUniquenessChecker;
-    public CreateCustomerCommandHandler(ICustomerRepository customerRepository, ICustomerEmailUniquenessChecker customerUniquenessChecker)
+    private readonly ICustomerPhoneNumberValidator _customerPhoneNumberValidator;
+
+    public CreateCustomerCommandHandler(ICustomerRepository customerRepository, ICustomerEmailUniquenessChecker customerUniquenessChecker, ICustomerPhoneNumberValidator customerPhoneNumberValidator)
     {
         _customerRepository = customerRepository;
         _customerEmailUniquenessChecker = customerUniquenessChecker;
+        _customerPhoneNumberValidator = customerPhoneNumberValidator;
     }
 
     public async Task<Guid> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
@@ -24,7 +27,9 @@ public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerComman
             request.PhoneNumberCountryCode,
             request.PhoneNumber,
             request.Email,
-            request.BankAccountNumber, _customerEmailUniquenessChecker
+            request.BankAccountNumber,
+            _customerEmailUniquenessChecker,
+            _customerPhoneNumberValidator
             );
 
         await _customerRepository.AddAsync(customer, cancellationToken);

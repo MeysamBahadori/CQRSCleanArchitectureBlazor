@@ -49,16 +49,18 @@ public class Customer : BaseEntity
 
     }
 
-    public static Customer Create(string? firstname, string? lastname, DateTimeOffset dateOfBirth, string? phoneNumberCountryCode, string? phoneNumber, string? email, string? bankAccountNumber, ICustomerEmailUniquenessChecker customerUniquenessChecker)
+    public static Customer Create(string? firstname, string? lastname, DateTimeOffset dateOfBirth, string? phoneNumberCountryCode, string? phoneNumber, string? email, string? bankAccountNumber, ICustomerEmailUniquenessChecker customerUniquenessChecker, ICustomerPhoneNumberValidator customerPhoneNumberValidator)
     {
         CheckRule(new CustomerUniqueEmailRule(customerUniquenessChecker, null, email));
+        CheckRule(new CustomerValidPhoneNumberRule(customerPhoneNumberValidator, phoneNumberCountryCode, phoneNumber));
         return new Customer(firstname, lastname, dateOfBirth, phoneNumberCountryCode, phoneNumber, email, bankAccountNumber);
     }
+
 
     public void Update(Guid? id, string? firstname, string? lastname, DateTimeOffset dateOfBirth, string? phoneNumberCountryCode, string? phoneNumber, string? email, string? bankAccountNumber, ICustomerEmailUniquenessChecker customerUniquenessChecker, ICustomerPhoneNumberValidator customerPhoneNumberValidator)
     {
         CheckRule(new CustomerUniqueEmailRule(customerUniquenessChecker, id, email));
-        CheckRule(new CustomerValidPhoneNumberrRule(customerPhoneNumberValidator, phoneNumberCountryCode, phoneNumber));
+        CheckRule(new CustomerValidPhoneNumberRule(customerPhoneNumberValidator, phoneNumberCountryCode, phoneNumber));
 
         Id = id.Value;
         Firstname = firstname;
