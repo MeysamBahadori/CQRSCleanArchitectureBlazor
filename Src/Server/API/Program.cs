@@ -6,7 +6,7 @@ using Mc2.CrudTest.Application.Mappers;
 
 namespace Mc2.CrudTest.API
 {
-    public class Program
+    public partial class Program
     {
         public static void Main(string[] args)
         {

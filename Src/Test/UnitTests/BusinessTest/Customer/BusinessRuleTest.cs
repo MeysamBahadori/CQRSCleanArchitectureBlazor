@@ -11,7 +11,7 @@ using Moq;
 using Xunit;
 using Xunit.Sdk;
 
-namespace Mc2.CrudTest.UnitTests.CommandHandlers
+namespace Mc2.CrudTest.UnitTests
 {
     public class BusinessRuleTest
     {
