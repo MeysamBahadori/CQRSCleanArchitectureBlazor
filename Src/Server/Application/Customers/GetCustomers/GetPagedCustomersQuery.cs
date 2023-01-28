@@ -1,12 +1,6 @@
 ﻿using Mc2.CrudTest.Shared.Dto;
-using Mc2.CrudTest.Shared.Dto.Customer;
+using Mc2.CrudTest.Shared.Dto.Customers;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mc2.CrudTest.Application.Customers;
 

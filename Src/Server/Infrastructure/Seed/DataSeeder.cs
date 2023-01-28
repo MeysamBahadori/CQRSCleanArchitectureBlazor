@@ -1,7 +1,6 @@
 ﻿using Mc2.CrudTest.Domain.Customers;
 using Mc2.CrudTest.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Text.Json;
 

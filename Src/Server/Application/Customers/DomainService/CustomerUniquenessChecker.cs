@@ -1,5 +1,4 @@
-﻿using Mc2.CrudTest.Domain.BusinessRule;
-using Mc2.CrudTest.Domain.Entities.Customers;
+﻿using Mc2.CrudTest.Domain.Entities.Customers;
 using Mc2.CrudTest.Domain.Repository;
 
 namespace Mc2.CrudTest.Application.Customers

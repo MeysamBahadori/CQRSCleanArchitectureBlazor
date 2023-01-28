@@ -2,10 +2,11 @@
 
 namespace Mc2.CrudTest.Application.Customers;
 
-public class CreateCustomerCommand : IRequest<Guid>
+public class UpdateCustomerCommand : IRequest<Guid>
 {
-    public CreateCustomerCommand(string? firstname, string? lastname, DateTimeOffset dateOfBirth, string? phoneNumberCountryCode, string? phoneNumber, string? email, string? bankAccountNumber)
+    public UpdateCustomerCommand(Guid id,string? firstname, string? lastname, DateTimeOffset dateOfBirth, string? phoneNumberCountryCode, string? phoneNumber, string? email, string? bankAccountNumber)
     {
+        Id = id;
         Firstname = firstname;
         Lastname = lastname;
         DateOfBirth = dateOfBirth;
@@ -15,10 +16,7 @@ public class CreateCustomerCommand : IRequest<Guid>
         BankAccountNumber = bankAccountNumber;
     }
 
-    public CreateCustomerCommand()
-    {
-        
-    }
+    public Guid Id { get; set; }
 
     public string? Firstname { get; set; }
     public string? Lastname { get; set; }
@@ -28,6 +26,8 @@ public class CreateCustomerCommand : IRequest<Guid>
     public string? Email { get; set; }
     public string? BankAccountNumber { get; set; }
 
-
-
+    public UpdateCustomerCommand()
+    {
+        
+    }
 }

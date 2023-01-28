@@ -1,4 +1,4 @@
-﻿using Mc2.CrudTest.Shared.Dto.Customer;
+﻿using Mc2.CrudTest.Shared.Dto.Customers;
 using MediatR;
 
 namespace Mc2.CrudTest.Application.Customers;

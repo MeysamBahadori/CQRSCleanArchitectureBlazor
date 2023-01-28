@@ -1,9 +1,6 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Mc2.CrudTest.Shared.Dto.Customer;
+namespace Mc2.CrudTest.Shared.Dto.Customers;
 
 
 public class CustomerDto

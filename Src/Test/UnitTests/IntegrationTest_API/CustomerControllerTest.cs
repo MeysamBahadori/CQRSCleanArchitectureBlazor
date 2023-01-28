@@ -1,13 +1,9 @@
 ﻿using Mc2.CrudTest.API;
-using Mc2.CrudTest.Shared.Dto.Customer;
+using Mc2.CrudTest.Shared.Dto.Customers;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Mc2.CrudTest.UnitTests;
@@ -35,6 +31,19 @@ public class CustomerControllerTest : IClassFixture<WebApplicationFactory<Progra
         Assert.True(response.IsSuccessStatusCode);
     }
 
+    [Fact]
+    public async Task GetPagedEndpoint_Should_ReturnOk()
+    {
+        // Arrange
+        var client = _webFactory.CreateClient();
+        var url = "api/customers?MaxResultCount=10&Skip=0";
+
+        // Act
+        var response = await client.GetAsync(url);
+
+        // Assert
+        Assert.True(response.IsSuccessStatusCode);
+    }
 
     [Theory, ClassData(typeof(CreateCustomerTestData))]
     public async Task CreateCustomer_Should_ReturnOk(string firstName, string lastname, string email,DateTimeOffset dateOfBirth, string bankAccountNumber, string phoneNumberCountryCode, string phoneNumber)

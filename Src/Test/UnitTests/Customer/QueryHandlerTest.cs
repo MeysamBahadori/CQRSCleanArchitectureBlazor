@@ -1,18 +1,12 @@
 ﻿using AutoMapper;
 using Mc2.CrudTest.Application.Customers;
 using Mc2.CrudTest.Application.Mappers;
-using Mc2.CrudTest.Domain;
-using Mc2.CrudTest.Domain.BusinessRule;
 using Mc2.CrudTest.Domain.Customers;
 using Mc2.CrudTest.Infrastructure.Db;
 using Mc2.CrudTest.Infrastructure.Domain.Customers;
-using Mc2.CrudTest.Infrastructure.Seed;
-using Mc2.CrudTest.Shared.Dto.Customer;
-using Microsoft.EntityFrameworkCore;
 using Moq;
 
 using Xunit;
-using Xunit.Sdk;
 
 namespace Mc2.CrudTest.UnitTests;
 

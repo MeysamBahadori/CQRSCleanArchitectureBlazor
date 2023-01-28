@@ -27,6 +27,7 @@ public static class InfrastractureModule
 
         services.AddTransient<ICustomerRepository, CustomerRepository>();
         services.AddTransient<ICustomerEmailUniquenessChecker, CustomerUniquenessChecker>();
+        services.AddTransient<ICustomerPhoneNumberValidator, CustomerPhoneNumberValidator>();
 
         return services;
     }

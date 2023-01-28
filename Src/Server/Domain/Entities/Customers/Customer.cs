@@ -54,4 +54,19 @@ public class Customer : BaseEntity
         CheckRule(new CustomerUniqueEmailRule(customerUniquenessChecker, null, email));
         return new Customer(firstname, lastname, dateOfBirth, phoneNumberCountryCode, phoneNumber, email, bankAccountNumber);
     }
+
+    public void Update(Guid? id, string? firstname, string? lastname, DateTimeOffset dateOfBirth, string? phoneNumberCountryCode, string? phoneNumber, string? email, string? bankAccountNumber, ICustomerEmailUniquenessChecker customerUniquenessChecker, ICustomerPhoneNumberValidator customerPhoneNumberValidator)
+    {
+        CheckRule(new CustomerUniqueEmailRule(customerUniquenessChecker, id, email));
+        CheckRule(new CustomerValidPhoneNumberrRule(customerPhoneNumberValidator, phoneNumberCountryCode, phoneNumber));
+
+        Id = id.Value;
+        Firstname = firstname;
+        Lastname = lastname;
+        DateOfBirth = dateOfBirth;
+        PhoneNumber = phoneNumber;
+        PhoneNumberCountryCode = phoneNumberCountryCode;
+        Email = email;
+        BankAccountNumber = bankAccountNumber;
+    }
 }

@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
 using Mc2.CrudTest.Domain.Repository;
 using Mc2.CrudTest.Shared.Dto;
-using Mc2.CrudTest.Shared.Dto.Customer;
+using Mc2.CrudTest.Shared.Dto.Customers;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace Mc2.CrudTest.Application.Customers;
 

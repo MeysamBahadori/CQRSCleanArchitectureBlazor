@@ -1,8 +1,6 @@
 ﻿using Mc2.CrudTest.Domain.Customers;
-using Mc2.CrudTest.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System.Reflection.Emit;
 
 namespace Mc2.CrudTest.Infrastructure.Domain.Customers;
 
