@@ -2,6 +2,7 @@
 using Mc2.CrudTest.Domain.Repository;
 using Mc2.CrudTest.Infrastructure.Db;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 
 namespace Mc2.CrudTest.Infrastructure.Repositories;
@@ -9,7 +10,7 @@ namespace Mc2.CrudTest.Infrastructure.Repositories;
 public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
 {
     protected readonly CrudTestReadWriteContext DbContext;
-    public DbSet<TEntity> Entities { get; }
+    public DbSet<TEntity> Entities { get;}
     public virtual IQueryable<TEntity> Table => Entities;
     public virtual IQueryable<TEntity> TableNoTracking => Entities.AsNoTracking();
 
@@ -18,17 +19,17 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, I
         DbContext = dbContext;
         Entities = DbContext.Set<TEntity>();
     }
-
+    
     public virtual TEntity? GetById(params object[] ids)
     {
         return Entities.Find(ids);
     }
 
-    public virtual ValueTask<TEntity?> GetByIdAsync(CancellationToken cancellationToken, params object[] ids)
+    public virtual async ValueTask<TEntity?> GetByIdAsync(CancellationToken cancellationToken, params object[] ids)
     {
-        return Entities.FindAsync(ids, cancellationToken);
+        return await Entities.FindAsync(ids,cancellationToken);
     }
-
+  
     public virtual void Add(TEntity entity, bool saveNow = true)
     {
         Entities.Add(entity);

@@ -67,9 +67,9 @@ public class CustomerControllerTest : IClassFixture<WebApplicationFactory<Progra
         public IEnumerator<object[]> GetEnumerator()
         {
             yield return new object[] {
-             "test_Firstname",
-             "test_Lastname",
-             "test_Email@test_Email.com",
+             $"Firstname_{Guid.NewGuid()}",
+             $"Lastname_{Guid.NewGuid()}",
+             $"Firstname_ {Guid.NewGuid()}@gmail.com",
              DateTimeOffset.Now.AddYears(-30),
              "9999888877776666",
              "IR",

@@ -21,7 +21,7 @@ namespace Mc2.CrudTest.UnitTests
             // Arrange
 
             //get customer data from the infrastructure data seeder
-            var mockCustomerSet = GetMockCustomerDbset();
+            var mockCustomerSet = TestDataProvider.GetMockCustomerDbset();
 
             var mockContext = new Mock<CrudTestReadWriteContext>();
             mockContext.Setup(c => c.Set<Customer>()).Returns(mockCustomerSet.Object);
@@ -45,17 +45,5 @@ namespace Mc2.CrudTest.UnitTests
             Assert.Equal(DomainConest.ErrorMessage_CustomerUniqueEmailRule, exception.Message);
         }
 
-        private Mock<DbSet<Customer>> GetMockCustomerDbset()
-        {
-            var customerData = DataSeeder.GetCustomersSeedData().AsQueryable();
-
-            var mockSet = new Mock<DbSet<Customer>>();
-            mockSet.As<IQueryable<Customer>>().Setup(m => m.Provider).Returns(customerData.Provider);
-            mockSet.As<IQueryable<Customer>>().Setup(m => m.Expression).Returns(customerData.Expression);
-            mockSet.As<IQueryable<Customer>>().Setup(m => m.ElementType).Returns(customerData.ElementType);
-            mockSet.As<IQueryable<Customer>>().Setup(m => m.GetEnumerator()).Returns(customerData.GetEnumerator);
-
-            return mockSet;
-        }
     }
 }
