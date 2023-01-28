@@ -74,5 +74,32 @@ namespace Mc2.CrudTest.API.Controllers
         }
 
 
+        /// <summary>
+        /// update an exist customer
+        /// </summary>
+        /// <param name="request">Contain customer data</param>
+        /// <param name="cancellationToken">The Cancellation token</param>
+        /// <returns></returns>
+        [HttpPut]
+        [ProducesResponseType(typeof(Guid), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> UpdateCustomer([FromBody] CustomerDto request, CancellationToken cancellationToken)
+        {
+            var id = await _mediator.Send(
+                new UpdateCustomerCommand(
+                    request.Id,
+                    request.Firstname,
+                    request.Lastname,
+                    request.DateOfBirth,
+                    request.PhoneNumberCountryCode,
+                    request.PhoneNumber,
+                    request.Email,
+                    request.BankAccountNumber
+                )
+                , cancellationToken);
+
+            return Ok(id);
+        }
+
+
     }
 }

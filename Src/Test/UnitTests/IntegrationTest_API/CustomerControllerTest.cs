@@ -1,4 +1,7 @@
-﻿using Mc2.CrudTest.API;
+﻿using AutoMapper;
+using Mc2.CrudTest.API;
+using Mc2.CrudTest.Application.Mappers;
+using Mc2.CrudTest.Domain.Customers;
 using Mc2.CrudTest.Shared.Dto.Customers;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
@@ -66,6 +69,35 @@ public class CustomerControllerTest : IClassFixture<WebApplicationFactory<Progra
 
         // Act
         var response = await client.PostAsync(url, data);
+
+        // Assert
+        Assert.True(response.IsSuccessStatusCode);
+    }
+
+    [Fact]
+    public async Task UpdateCustomer_Should_ReturnOk()
+    {
+        // Arrange
+        var client = _webFactory.CreateClient();
+        var url = "api/customers";
+
+        Customer customerToUpdate = TestDataProvider.GetMockCustomerDbset().Object.FirstOrDefault()!;
+
+        var mockMapper = new MapperConfiguration(cfg =>
+        {
+            cfg.AddProfile(new CustomerMapperConfiguration());
+        });
+        var mapper = mockMapper.CreateMapper();
+
+        var request = mapper.Map<CustomerDto>(customerToUpdate);
+
+        request.Firstname = $"Firstname_{Guid.NewGuid()}";
+
+        var json = JsonConvert.SerializeObject(request);
+        var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+        // Act
+        var response = await client.PutAsync(url, data);
 
         // Assert
         Assert.True(response.IsSuccessStatusCode);
