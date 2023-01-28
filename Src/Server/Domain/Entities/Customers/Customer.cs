@@ -1,4 +1,5 @@
 ﻿using Mc2.CrudTest.Domain.Entities;
+using Mc2.CrudTest.Domain.Entities.Customers;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -46,5 +47,11 @@ public class Customer : BaseEntity
     public Customer()
     {
 
+    }
+
+    public static Customer Create(string? firstname, string? lastname, DateTimeOffset dateOfBirth, string? phoneNumberCountryCode, string? phoneNumber, string? email, string? bankAccountNumber, ICustomerEmailUniquenessChecker customerUniquenessChecker)
+    {
+        CheckRule(new CustomerUniqueEmailRule(customerUniquenessChecker, null, email));
+        return new Customer(firstname, lastname, dateOfBirth, phoneNumberCountryCode, phoneNumber, email, bankAccountNumber);
     }
 }

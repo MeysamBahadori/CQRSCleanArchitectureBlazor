@@ -11,7 +11,7 @@ public class CrudTestReadWriteContext : DbContext
         
     }
 
-    public DbSet<Customer> Customers { get; set; }
+    public virtual DbSet<Customer> Customers { get; set; }
 
     public CrudTestReadWriteContext(DbContextOptions options) : base(options)
     {

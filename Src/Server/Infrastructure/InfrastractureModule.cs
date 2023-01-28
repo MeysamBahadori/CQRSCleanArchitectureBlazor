@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Mc2.CrudTest.Infrastructure.Db;
 using Mc2.CrudTest.Domain.Repository;
 using Mc2.CrudTest.Infrastructure.Domain.Customers;
+using Mc2.CrudTest.Domain.Entities.Customers;
+using Mc2.CrudTest.Application.Customers;
 
 namespace Mc2.CrudTest.Infrastructure;
 
@@ -24,6 +26,7 @@ public static class InfrastractureModule
 
 
         services.AddTransient<ICustomerRepository, CustomerRepository>();
+        services.AddTransient<ICustomerEmailUniquenessChecker, CustomerUniquenessChecker>();
 
         return services;
     }

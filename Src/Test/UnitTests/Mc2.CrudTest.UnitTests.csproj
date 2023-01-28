@@ -21,6 +21,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\..\Server\Application\Mc2.CrudTest.Application.csproj" />
 	  <ProjectReference Include="..\..\Server\Infrastructure\Mc2.CrudTest.Infrastructure.csproj" />
 	</ItemGroup>
 	
