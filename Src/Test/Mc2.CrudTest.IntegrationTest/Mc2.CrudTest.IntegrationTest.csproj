@@ -4,6 +4,8 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
 	<ItemGroup>
@@ -22,10 +24,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Server\API\Mc2.CrudTest.API.csproj" />
-	  <ProjectReference Include="..\..\Server\Application\Mc2.CrudTest.Application.csproj" />
-	  <ProjectReference Include="..\..\Server\Common\Mc2.CrudTest.Common.csproj" />
-	  <ProjectReference Include="..\..\Server\Infrastructure\Mc2.CrudTest.Infrastructure.csproj" />
+		<ProjectReference Include="..\..\Server\API\Mc2.CrudTest.API.csproj" />
+		<ProjectReference Include="..\..\Server\Application\Mc2.CrudTest.Application.csproj" />
+		<ProjectReference Include="..\..\Server\Common\Mc2.CrudTest.Common.csproj" />
+		<ProjectReference Include="..\..\Server\Infrastructure\Mc2.CrudTest.Infrastructure.csproj" />
 	</ItemGroup>
-	
+
 </Project>

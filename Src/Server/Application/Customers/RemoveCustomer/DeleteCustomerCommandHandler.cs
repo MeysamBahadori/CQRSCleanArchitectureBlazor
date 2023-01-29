@@ -1,5 +1,5 @@
 ﻿using Mc2.CrudTest.Domain.Customers;
-using Mc2.CrudTest.Domain.CustomException;
+using Mc2.CrudTest.Domain.Exceptions;
 using Mc2.CrudTest.Domain.Entities.Customers;
 using Mc2.CrudTest.Domain.Repository;
 using MediatR;

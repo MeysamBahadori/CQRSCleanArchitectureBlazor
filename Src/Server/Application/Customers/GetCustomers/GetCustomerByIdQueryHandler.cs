@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Mc2.CrudTest.Domain.Customers;
-using Mc2.CrudTest.Domain.CustomException;
+using Mc2.CrudTest.Domain.Exceptions;
 using Mc2.CrudTest.Domain.Repository;
 using Mc2.CrudTest.Shared.Dto.Customers;
 using MediatR;

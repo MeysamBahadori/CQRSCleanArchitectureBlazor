@@ -1,6 +1,7 @@
 ﻿using Ata.Teck.Shared.Exceptions;
-using Mc2.CrudTest.Domain.BusinessRule;
-using Mc2.CrudTest.Domain.CustomException;
+using Mc2.CrudTest.Common;
+using Mc2.CrudTest.Common.Exceptions;
+using Mc2.CrudTest.Domain.Exceptions;
 using System.Net;
 using System.Reflection;
 using System.Text.Json;
@@ -24,20 +25,20 @@ public class HttpResponseExceptionHandlerMiddleware
         }
         catch(BusinessRuleValidationException  ex)
         {
-            ExceptionWrapperData exData = new ExceptionWrapperData(ex.Message, HttpStatusCode.InternalServerError,AppConest.ErrorType_BusinessRuleValidation);
+            ExceptionWrapperData exData = new ExceptionWrapperData(HttpStatusCode.InternalServerError, ex.Message, AppConest.ErrorType_BusinessRuleValidation);
 
             await context.Response.WriteAsJsonAsync(exData);
         }
         catch (EntityNotFoundException ex)
         {
-            ExceptionWrapperData exData = new ExceptionWrapperData(ex.Message, HttpStatusCode.InternalServerError, AppConest.ErrorType_Domain_Data);
+            ExceptionWrapperData exData = new ExceptionWrapperData(HttpStatusCode.InternalServerError, ex.Message, AppConest.ErrorType_Domain_Data);
 
             await context.Response.WriteAsJsonAsync(exData);
 
         }
-        catch (Exception ex)
+        catch
         {
-            ExceptionWrapperData exData = new ExceptionWrapperData("Internal Server Error", HttpStatusCode.InternalServerError);
+            ExceptionWrapperData exData = new ExceptionWrapperData(HttpStatusCode.InternalServerError);
 
             await context.Response.WriteAsJsonAsync(exData);
         }

@@ -1,6 +1,7 @@
 using Mc2.CrudTest.Application.Customers;
+using Mc2.CrudTest.Common;
+using Mc2.CrudTest.Common.Exceptions;
 using Mc2.CrudTest.Domain;
-using Mc2.CrudTest.Domain.BusinessRule;
 using Mc2.CrudTest.Domain.Customers;
 using Mc2.CrudTest.Infrastructure.Db;
 using Mc2.CrudTest.Infrastructure.Domain.Customers;
@@ -40,7 +41,7 @@ namespace Mc2.CrudTest.UnitTests
             //The result must be a BusinessRuleValidationException exception with a specific message
             var exception = await Assert.ThrowsAsync<BusinessRuleValidationException>(() => commandHandler.Handle(mocRequest.Object, CancellationToken.None));
 
-            Assert.Equal(DomainConest.ErrorMessage_CustomerUniqueEmailRule, exception.Message);
+            Assert.Equal(AppConest.ErrorMessage_CustomerUniqueEmailRule, exception.Message);
         }
 
 
@@ -76,7 +77,7 @@ namespace Mc2.CrudTest.UnitTests
             //The result must be a BusinessRuleValidationException exception with a specific message
             var exception = await Assert.ThrowsAsync<BusinessRuleValidationException>(() => commandHandler.Handle(mocRequest.Object, CancellationToken.None));
 
-            Assert.Equal(DomainConest.ErrorMessage_ValidPhoneNumberRule, exception.Message);
+            Assert.Equal(AppConest.ErrorMessage_ValidPhoneNumberRule, exception.Message);
         }
 
     }

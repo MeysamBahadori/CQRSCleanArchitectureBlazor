@@ -1,4 +1,5 @@
-﻿using Mc2.CrudTest.Domain.BusinessRule;
+﻿using Mc2.CrudTest.Common.Behaviours;
+using Mc2.CrudTest.Common.Exceptions;
 
 namespace Mc2.CrudTest.Domain.Entities;
 

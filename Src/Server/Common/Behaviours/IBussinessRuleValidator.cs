@@ -1,4 +1,4 @@
-﻿namespace Mc2.CrudTest.Domain.BusinessRule;
+﻿namespace Mc2.CrudTest.Common.Behaviours;
 
 public interface IBussinessRuleValidator
 {

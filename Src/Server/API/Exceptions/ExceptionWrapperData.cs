@@ -1,4 +1,4 @@
-﻿using Mc2.CrudTest.API;
+﻿using Mc2.CrudTest.Common;
 using System.Net;
 using System.Runtime.Serialization;
 
@@ -7,7 +7,7 @@ namespace Ata.Teck.Shared.Exceptions;
 [Serializable]
 public class ExceptionWrapperData
 {
-    public ExceptionWrapperData(string? error, HttpStatusCode statusCode, string? errorType)
+    public ExceptionWrapperData(HttpStatusCode statusCode, string? error = null, string? errorType = null)
     {
         Error = error ?? AppConest.ErrorMessage_Internal_Server_Error_Message;
         StatusCode = statusCode;

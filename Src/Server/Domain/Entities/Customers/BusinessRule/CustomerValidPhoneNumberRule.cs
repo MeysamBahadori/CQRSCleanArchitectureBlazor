@@ -1,4 +1,5 @@
-﻿using Mc2.CrudTest.Domain.BusinessRule;
+﻿using Mc2.CrudTest.Common;
+using Mc2.CrudTest.Common.Behaviours;
 namespace Mc2.CrudTest.Domain.Entities.Customers;
 
 public class CustomerValidPhoneNumberRule : IBussinessRuleValidator
@@ -15,7 +16,7 @@ public class CustomerValidPhoneNumberRule : IBussinessRuleValidator
         _phoneNumber = phoneNumber;
     }
 
-    public string InvalidMessage => DomainConest.ErrorMessage_ValidPhoneNumberRule;
+    public string InvalidMessage => AppConest.ErrorMessage_ValidPhoneNumberRule;
 
     public bool IsValid()
     {

@@ -1,4 +1,5 @@
-﻿using Mc2.CrudTest.Domain.BusinessRule;
+﻿using Mc2.CrudTest.Common;
+using Mc2.CrudTest.Common.Behaviours;
 
 namespace Mc2.CrudTest.Domain.Entities.Customers;
 
@@ -15,7 +16,7 @@ public class CustomerUniqueEmailRule : IBussinessRuleValidator
         _email = email;
         _id = id;
     }
-    public string InvalidMessage =>DomainConest.ErrorMessage_CustomerUniqueEmailRule;
+    public string InvalidMessage =>AppConest.ErrorMessage_CustomerUniqueEmailRule;
 
     public bool IsValid()
     {

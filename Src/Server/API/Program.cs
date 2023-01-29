@@ -25,7 +25,7 @@ namespace Mc2.CrudTest.API
             builder.Services.AddSwaggerGen();
 
             //Modules DI
-            InfrastractureModule.AddInfrastractureDI(builder.Services, builder.Configuration);
+            builder.Services.AddInfrastractureDI(builder.Configuration);
 
             var app = builder.Build();
 

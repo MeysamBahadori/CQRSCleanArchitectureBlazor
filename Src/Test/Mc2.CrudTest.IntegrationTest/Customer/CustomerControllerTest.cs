@@ -2,6 +2,7 @@
 using Mc2.CrudTest.API;
 using Mc2.CrudTest.Application.Mappers;
 using Mc2.CrudTest.Domain.Customers;
+using Mc2.CrudTest.Infrastructure.Seed;
 using Mc2.CrudTest.Shared.Dto.Customers;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
@@ -81,7 +82,7 @@ public class CustomerControllerTest : IClassFixture<WebApplicationFactory<Progra
         var client = _webFactory.CreateClient();
         var url = "api/customers";
 
-        Customer customerToUpdate = TestDataSetProvider.Instance.GetMockCustomerDbset().Object.FirstOrDefault()!;
+        Customer customerToUpdate = DataSeeder.GetCustomersSeedData().FirstOrDefault()!;
 
         var mockMapper = new MapperConfiguration(cfg =>
         {

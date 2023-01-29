@@ -1,4 +1,6 @@
-﻿namespace Mc2.CrudTest.Domain.BusinessRule;
+﻿using Mc2.CrudTest.Common.Behaviours;
+
+namespace Mc2.CrudTest.Common.Exceptions;
 
 public class BusinessRuleValidationException : Exception
 {
