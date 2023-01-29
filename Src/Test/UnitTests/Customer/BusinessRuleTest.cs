@@ -18,7 +18,7 @@ namespace Mc2.CrudTest.UnitTests
             // Arrange
 
             //get customer data from the infrastructure data seeder
-            var mockCustomerSet = TestDataProvider.GetMockCustomerDbset();
+            var mockCustomerSet = TestDataSetProvider.Instance.GetMockCustomerDbset();
 
             var mockContext = new Mock<CrudTestReadWriteContext>();
             mockContext.Setup(c => c.Set<Customer>()).Returns(mockCustomerSet.Object);
@@ -50,7 +50,7 @@ namespace Mc2.CrudTest.UnitTests
             // Arrange
 
             //get customer data from the infrastructure data seeder
-            var mockCustomerSet = TestDataProvider.GetMockCustomerDbset();
+            var mockCustomerSet = TestDataSetProvider.Instance.GetMockCustomerDbset();
 
             var mockContext = new Mock<CrudTestReadWriteContext>();
             mockContext.Setup(c => c.Set<Customer>()).Returns(mockCustomerSet.Object);

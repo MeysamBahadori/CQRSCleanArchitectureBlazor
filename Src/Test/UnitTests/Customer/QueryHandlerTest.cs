@@ -19,7 +19,7 @@ public class QueryHandlerTest
         // Arrange
 
         //Get customer data from the infrastructure data seeder
-        var mockCustomerSet = TestDataProvider.GetMockCustomerDbset();
+        var mockCustomerSet = TestDataSetProvider.Instance.GetMockCustomerDbset();
 
         //Moc data context
         var mockContext = new Mock<CrudTestReadWriteContext>();
@@ -54,7 +54,7 @@ public class QueryHandlerTest
         // Arrange
 
         //Get customer data from the infrastructure data seeder
-        var mockCustomerSet = TestDataProvider.GetMockCustomerDbset();
+        var mockCustomerSet = TestDataSetProvider.Instance.GetMockCustomerDbset();
 
         //Moc data context
         var mockContext = new Mock<CrudTestReadWriteContext>();

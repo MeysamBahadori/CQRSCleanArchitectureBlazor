@@ -81,7 +81,7 @@ public class CustomerControllerTest : IClassFixture<WebApplicationFactory<Progra
         var client = _webFactory.CreateClient();
         var url = "api/customers";
 
-        Customer customerToUpdate = TestDataProvider.GetMockCustomerDbset().Object.FirstOrDefault()!;
+        Customer customerToUpdate = TestDataSetProvider.Instance.GetMockCustomerDbset().Object.FirstOrDefault()!;
 
         var mockMapper = new MapperConfiguration(cfg =>
         {

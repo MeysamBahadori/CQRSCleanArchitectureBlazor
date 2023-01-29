@@ -7,6 +7,7 @@ using Mc2.CrudTest.Infrastructure.Db;
 using Mc2.CrudTest.Infrastructure.Domain.Customers;
 using Microsoft.VisualStudio.TestPlatform.Utilities;
 using Moq;
+using System.Net.Sockets;
 using Xunit;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace Mc2.CrudTest.UnitTests;
@@ -19,7 +20,7 @@ public class CommandHandlerTest
         // Arrange
 
         //Get customer data from the infrastructure data seeder
-        var mockCustomerSet = TestDataProvider.GetMockCustomerDbset();
+        var mockCustomerSet = TestDataSetProvider.Instance.GetMockCustomerDbset();
 
         //Moc data context
         var mockContext = new Mock<CrudTestReadWriteContext>();
@@ -52,6 +53,38 @@ public class CommandHandlerTest
 
         //The result must be same as input Id
         Assert.Equal(customerToUpdate.Id, updatedCustomerId);
+    }
+
+
+    [Fact]
+    public async Task Delete_Customer_Successfully()
+    {
+        // Arrange
+
+        //Get customer data from the infrastructure data seeder
+        var mockCustomerSet = TestDataSetProvider.Instance.GetMockCustomerDbset();
+
+        int customersCount = TestDataSetProvider.Instance.CustomerDataSet.Count();
+
+        //Moc data context
+        var mockContext = new Mock<CrudTestReadWriteContext>();
+        mockContext.Setup(c => c.Set<Customer>()).Returns(mockCustomerSet.Object);
+
+        var _customerRepository = new CustomerRepository(mockContext.Object);
+
+        Customer customerToDelete = mockCustomerSet.Object.FirstOrDefault()!;
+      
+        var mocRequest = new DeleteCustomerCommand(customerToDelete.Id);
+
+        // Act
+        var commandHandler = new DeleteCustomerCommandHandler(_customerRepository);
+        await commandHandler.Handle(mocRequest, CancellationToken.None);
+
+
+        //Assert
+
+        //The number of DataSet entities must be reduced by one
+        Assert.Equal(mockCustomerSet.Object.Count(), customersCount-1);
     }
 
 }
