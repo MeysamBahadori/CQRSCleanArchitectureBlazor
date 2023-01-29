@@ -1,4 +1,5 @@
 using Mc2.CrudTest.Client.Web.Data;
+using Mc2.CrudTest.Client.Web.Service;
 
 namespace Mc2.CrudTest.Client.Web
 {
@@ -9,9 +10,22 @@ namespace Mc2.CrudTest.Client.Web
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddTransient<AppHttpClientHandler>();
             builder.Services.AddRazorPages();
             builder.Services.AddServerSideBlazor();
             builder.Services.AddSingleton<WeatherForecastService>();
+            builder.Services.AddScoped<IExceptionHandler, ExceptionHandler>();
+
+            builder.Services.AddScoped(sp =>
+            {
+                HttpClient httpClient = new(sp.GetRequiredService<AppHttpClientHandler>())
+                {
+                    Timeout = TimeSpan.FromSeconds(60),
+                    BaseAddress = new Uri($"{sp.GetRequiredService<IConfiguration>()["ApiServerAddress"]}")
+                };
+
+                return httpClient;
+            });
 
             var app = builder.Build();
 

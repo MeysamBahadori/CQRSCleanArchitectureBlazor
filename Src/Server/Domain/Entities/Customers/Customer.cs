@@ -15,7 +15,7 @@ public class Customer : BaseEntity
     [Column(TypeName = "VARCHAR")]
     [StringLength(64)]
     public string? Lastname { get; set; }
-    public DateTimeOffset DateOfBirth { get; set; }
+    public DateTimeOffset? DateOfBirth { get; set; }
 
     [StringLength(3)]
     public string? PhoneNumberCountryCode { get; set; }
@@ -32,7 +32,7 @@ public class Customer : BaseEntity
     [StringLength(34)]
     public string? BankAccountNumber { get; set; }
 
-    public Customer(string? firstname, string? lastname, DateTimeOffset dateOfBirth, string? phoneNumberCountryCode, string? phoneNumber, string? email, string? bankAccountNumber)
+    public Customer(string? firstname, string? lastname, DateTimeOffset? dateOfBirth, string? phoneNumberCountryCode, string? phoneNumber, string? email, string? bankAccountNumber)
     {
         Id =  Guid.NewGuid();
         Firstname = firstname;
@@ -49,7 +49,7 @@ public class Customer : BaseEntity
 
     }
 
-    public static Customer Create(string? firstname, string? lastname, DateTimeOffset dateOfBirth, string? phoneNumberCountryCode, string? phoneNumber, string? email, string? bankAccountNumber, ICustomerEmailUniquenessChecker customerUniquenessChecker, ICustomerPhoneNumberValidator customerPhoneNumberValidator)
+    public static Customer Create(string? firstname, string? lastname, DateTimeOffset? dateOfBirth, string? phoneNumberCountryCode, string? phoneNumber, string? email, string? bankAccountNumber, ICustomerEmailUniquenessChecker customerUniquenessChecker, ICustomerPhoneNumberValidator customerPhoneNumberValidator)
     {
         CheckRule(new CustomerUniqueEmailRule(customerUniquenessChecker, null, email));
         CheckRule(new CustomerValidPhoneNumberRule(customerPhoneNumberValidator, phoneNumberCountryCode, phoneNumber));
@@ -57,7 +57,7 @@ public class Customer : BaseEntity
     }
 
 
-    public void Update(Guid? id, string? firstname, string? lastname, DateTimeOffset dateOfBirth, string? phoneNumberCountryCode, string? phoneNumber, string? email, string? bankAccountNumber, ICustomerEmailUniquenessChecker customerUniquenessChecker, ICustomerPhoneNumberValidator customerPhoneNumberValidator)
+    public void Update(Guid? id, string? firstname, string? lastname, DateTimeOffset? dateOfBirth, string? phoneNumberCountryCode, string? phoneNumber, string? email, string? bankAccountNumber, ICustomerEmailUniquenessChecker customerUniquenessChecker, ICustomerPhoneNumberValidator customerPhoneNumberValidator)
     {
         CheckRule(new CustomerUniqueEmailRule(customerUniquenessChecker, id, email));
         CheckRule(new CustomerValidPhoneNumberRule(customerPhoneNumberValidator, phoneNumberCountryCode, phoneNumber));

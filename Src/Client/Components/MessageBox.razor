@@ -1,0 +1,30 @@
+﻿@using Bit.BlazorUI;
+@using Mc2.CrudTest.Client.Web.Components;
+
+@namespace Mc2.CrudTest.Client.Web.Components
+
+@inherits AppComponentBase
+
+<BitModal @bind-IsOpen="IsOpen">
+    <div class="main">
+        <div class="header">
+            <span class="title">@Title</span>
+            <BitIconButton IconName="BitIconName.ChromeClose" OnClick="OnCloseClick" />
+        </div>
+        <div class="body">
+            @Body
+        </div>
+        <div class="footer">
+
+            @if (_isConfirm is false)
+            {
+                 <BitButton OnClick="@(()=>Confirm(true))">OK</BitButton>
+            }
+            else
+            {
+                    <BitButton OnClick="@(()=>Confirm(true))">Yes</BitButton>
+                    <BitButton OnClick="@(()=>Confirm(false))">No</BitButton>
+            }
+        </div>
+    </div>
+</BitModal>

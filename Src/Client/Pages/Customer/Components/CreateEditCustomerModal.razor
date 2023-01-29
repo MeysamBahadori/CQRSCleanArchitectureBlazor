@@ -1,0 +1,81 @@
+﻿@using Mc2.CrudTest.Client.Web.Components;
+@using Bit.BlazorUI;
+
+@namespace Mc2.CrudTest.Client.Web.Pages.Customer
+
+@inherits AppComponentBase
+
+<BitModal @bind-IsOpen="_isOpen">
+    <div class="main-container">
+        <div class="header">
+            <span class="title">
+                @if (_customer.Id is null)
+                {
+                    @:Edit customer
+                }
+                else
+                {
+                    @:Add customer
+                }
+            </span>
+            <BitIconButton IconName="BitIconName.ChromeClose" OnClick="OnCloseClick" />
+        </div>
+        <EditForm Model="_customer" OnValidSubmit="WrapHandled(Save)" style="width: 100%; display: flex; flex-direction: column;align-items: center">
+            <DataAnnotationsValidator/>
+
+            <div class="form-input-container">
+                <BitTextField @bind-Value="_customer.Firstname"
+                              Label="First Name"
+                              Placeholder="First Name" />
+                <ValidationMessage For="() => _customer.Firstname" />
+            </div>
+
+            <div class="form-input-container">
+                <BitTextField @bind-Value="_customer.Lastname"
+                              Label="Last Name"
+                              Placeholder="last Name" />
+                <ValidationMessage For="() => _customer.Lastname" />
+            </div>
+
+            <div class="form-input-container">
+                <BitDatePicker @bind-Value="_customer.DateOfBirth"
+                               Label="Date Of Birth"
+                               Placeholder="Date Of Birth" />
+                <ValidationMessage For="() => _customer.DateOfBirth" />
+            </div>
+
+            <div class="form-input-container">
+                <BitTextField @bind-Value="_customer.PhoneNumberCountryCode"
+                              Label="First Name"
+                              Placeholder="Country Code" />
+                <ValidationMessage For="() => _customer.PhoneNumberCountryCode" />
+            </div>
+
+            <div class="form-input-container">
+                <BitTextField @bind-Value="_customer.PhoneNumber"
+                              Label="Phone Number"
+                              Placeholder="Phone Number" />
+                <ValidationMessage For="() => _customer.PhoneNumber" />
+            </div>
+
+            <div class="form-input-container">
+                <BitTextField @bind-Value="_customer.Email"
+                              Label="Email"
+                              Placeholder="Email" />
+                <ValidationMessage For="() => _customer.Email" />
+            </div>
+
+             <div class="form-input-container">
+                <BitTextField @bind-Value="_customer.BankAccountNumber"
+                              Label="Bank Account Number"
+                              Placeholder="Bank Account Number" />
+                <ValidationMessage For="() => _customer.BankAccountNumber" />
+            </div>
+
+             <BitLoadingButton IsLoading="_isSaving" ButtonType="BitButtonType.Submit">
+                Save
+            </BitLoadingButton>
+
+        </EditForm>
+    </div>
+</BitModal>

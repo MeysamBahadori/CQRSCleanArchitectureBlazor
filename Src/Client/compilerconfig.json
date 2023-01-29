@@ -1,0 +1,22 @@
+﻿[
+  {
+    "outputFile": "Shared/Styles/_colors.css",
+    "inputFile": "Shared/Styles/_colors.scss"
+  },
+  {
+    "outputFile": "Pages/Customer/CustomerPage.razor.css",
+    "inputFile": "Pages/Customer/CustomerPage.razor.scss"
+  },
+  {
+    "outputFile": "Shared/Styles/_functions.css",
+    "inputFile": "Shared/Styles/_functions.scss"
+  },
+  {
+    "outputFile": "Pages/Customer/Components/CreateEditCustomerModal.razor.css",
+    "inputFile": "Pages/Customer/Components/CreateEditCustomerModal.razor.scss"
+  },
+  {
+    "outputFile": "Components/MessageBox.razor.css",
+    "inputFile": "Components/MessageBox.razor.scss"
+  }
+]

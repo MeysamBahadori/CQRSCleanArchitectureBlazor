@@ -1,0 +1,45 @@
+﻿@page "/customers"
+
+@using Bit.BlazorUI;
+@using Mc2.CrudTest.Shared.Dto.Customers;
+@using Mc2.CrudTest.Client.Web.Components;
+
+@namespace Mc2.CrudTest.Client.Web.Pages.Customers
+
+@inherits AppComponentBase
+
+<PageTitle>Customers</PageTitle>
+
+<div class="page-container">
+    @if (_isLoading)
+    {
+        <div class="loading-contianer">
+            <BitSpinner Size="BitSpinnerSize.Large"></BitSpinner>
+        </div>
+    }
+
+    <div class="page-row">
+        <h1 class="page-title">Customers</h1>
+        <BitButton OnClick="CreateProduct">Add customer</BitButton>
+    </div>
+    <div class="grid">
+        <BitDataGrid @ref="_dataGrid" ItemsProvider="_customerProvider" TGridItem="CustomerDto" ResizableColumns="true" Pagination="_pagination">
+            <BitDataGridPropertyColumn Title="Name" Property="c => c!.Firstname" Sortable="true" Class="column1">
+                <ColumnOptions>
+                    <BitSearchBox @bind-Value="CustomerNameFilter"
+                                  Placeholder="Search..."
+                                  InputHtmlAttributes="@(new Dictionary<string, object> {{"autofocus", true}})" />
+                </ColumnOptions>
+            </BitDataGridPropertyColumn>
+
+            <BitDataGridPropertyColumn Title="Last Name" Property="c => c!.Lastname" Sortable="true" Align="BitDataGridAlign.Left" />
+            <BitDataGridTemplateColumn Title="Actions" Align="BitDataGridAlign.Center" Context="customer">
+                <BitIconButton Style="color:#605E5C;" IconName="BitIconName.Edit" OnClick="() => EditCustomer(customer!)" Title="Edit" />
+                <BitIconButton Style="color:#605E5C;" IconName="BitIconName.Delete" OnClick="(() => DeleteCustomer(customer!))" Title="Delete" />
+            </BitDataGridTemplateColumn>
+
+        </BitDataGrid>
+        <BitDataGridPaginator Value="_pagination" />
+    </div>
+</div>
+<CreateEditCustomerModal @ref="_modal" OnSave="WrapHandled(RefreshData)" />
