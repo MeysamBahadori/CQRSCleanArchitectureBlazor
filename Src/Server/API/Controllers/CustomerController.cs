@@ -100,6 +100,19 @@ namespace Mc2.CrudTest.API.Controllers
             return Ok(id);
         }
 
-
+        /// <summary>
+        /// Delete a customer
+        /// </summary>
+        /// <param name="Id">Customer id</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        [Route("{Id}")]
+        [HttpDelete]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<IActionResult> DeleteCustomer([FromRoute] Guid Id, CancellationToken cancellationToken)
+        {
+            await _mediator.Send(new DeleteCustomerCommand(Id), cancellationToken);
+            return Ok();
+        }
     }
 }

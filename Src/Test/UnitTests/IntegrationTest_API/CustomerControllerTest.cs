@@ -103,6 +103,21 @@ public class CustomerControllerTest : IClassFixture<WebApplicationFactory<Progra
         Assert.True(response.IsSuccessStatusCode);
     }
 
+    [Theory]
+    [InlineData("8bd6dfea-6784-4b02-97c7-6d69b47e332a")]
+    public async Task DeleteCustomerEndpoint_Should_ReturnOk(string Id)
+    {
+        // Arrange
+        var client = _webFactory.CreateClient();
+        var url = $"api/customers/{Id}";
+
+        // Act
+        var response = await client.DeleteAsync(url);
+
+        // Assert
+        Assert.True(response.IsSuccessStatusCode);
+    }
+
     public class CreateCustomerTestData : IEnumerable<object[]>
     {
         public IEnumerator<object[]> GetEnumerator()
