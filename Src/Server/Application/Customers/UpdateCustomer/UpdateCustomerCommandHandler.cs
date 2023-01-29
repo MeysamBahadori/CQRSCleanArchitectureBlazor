@@ -25,7 +25,7 @@ public class UpdateCustomerCommandHandler : IRequestHandler<UpdateCustomerComman
 
         if (customer is null)
         {
-            throw new EntityNotFoundException("Customer", request.Id);
+            throw new EntityNotFoundException(nameof(customer), request.Id);
         }
 
         customer?.Update(

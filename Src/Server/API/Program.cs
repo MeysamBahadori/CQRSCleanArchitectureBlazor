@@ -29,6 +29,9 @@ namespace Mc2.CrudTest.API
 
             var app = builder.Build();
 
+            //Exception handler middleware
+            app.UseHttpResponseExceptionHandler();
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

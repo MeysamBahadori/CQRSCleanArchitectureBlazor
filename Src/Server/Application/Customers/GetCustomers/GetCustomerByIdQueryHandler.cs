@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Mc2.CrudTest.Domain.Customers;
+using Mc2.CrudTest.Domain.CustomException;
 using Mc2.CrudTest.Domain.Repository;
 using Mc2.CrudTest.Shared.Dto.Customers;
 using MediatR;
@@ -18,6 +20,11 @@ public class GetCustomerByIdQueryHandler : IRequestHandler<GetCustomerByIdQuery,
     public async Task<CustomerDto> Handle(GetCustomerByIdQuery request, CancellationToken cancellationToken)
     {
         var customer = await _customerRepository.GetByIdAsync(cancellationToken, request.Id);
+
+        if(customer is null)
+        {
+            throw new EntityNotFoundException(nameof(Customer), request.Id);
+        }
 
         return _mapper.Map<CustomerDto>(customer);
 
