@@ -89,14 +89,13 @@ public partial class CustomerPage:AppComponentBase
 
     private async Task DeleteCustomer(CustomerDto customer)
     {
-        //var confirmed = await ConfirmMessageBox.Show(Localizer.GetString(nameof(AppStrings.AreYouSureWannaDeleteProduct), product.Name ?? string.Empty),
-        //                                             Localizer[nameof(AppStrings.DeleteProduct)]);
+        var confirmed = await MessageBox.Show("Are you sure to delete?",$"{customer.Firstname}-{customer.Lastname}",true);
 
-        //if (confirmed)
-        //{
-        //    await HttpClient.DeleteAsync($"Product/Delete/{product.Id}");
+        if (confirmed)
+        {
+            await HttpClient.DeleteAsync($"customers/{customer.Id}");
 
-        //    await RefreshData();
-        //}
+            await RefreshData();
+        }
     }
 }
