@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{4148A403-0EA2-4685-B98B-11B5E68CE3F0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{9904AC9E-6E4C-4B21-8259-C7A3BB8CF7B4}"
+	ProjectSection(SolutionItems) = preProject
+		Server\docker-compose.yml = Server\docker-compose.yml
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{8D24A987-DCA4-4B95-B9EA-DA465122DBF4}"
 EndProject
