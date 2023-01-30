@@ -1,7 +1,4 @@
 ﻿using Mc2.CrudTest.Shared.Dto;
-using Microsoft.AspNetCore.Components;
-using System.Globalization;
-using System.Net.Http.Headers;
 
 namespace Mc2.CrudTest.Client.Web.Service;
 
@@ -15,7 +12,7 @@ public partial class AppHttpClientHandler : HttpClientHandler
         {
             var expData = await response.Content.ReadFromJsonAsync(AppJsonContext.Default.ExceptionWrapperData);
 
-            //Todo: The error needs to be recovered and adjusted
+            //Todo: The error needs to be recovered and adjusted ...
             throw new Exception(expData?.Error);
         }
 

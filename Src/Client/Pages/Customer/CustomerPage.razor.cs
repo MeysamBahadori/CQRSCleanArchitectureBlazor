@@ -24,7 +24,7 @@ public partial class CustomerPage:AppComponentBase
 
     private BitDataGrid<CustomerDto>? _dataGrid;
     private BitDataGridItemsProvider<CustomerDto> _customerProvider = default!;
-    private BitDataGridPaginationState _pagination = new() { ItemsPerPage = 10 };
+    private BitDataGridPaginationState _pagination = new() { ItemsPerPage = 5 };
 
 
     protected override async Task OnInitAsync()
@@ -44,7 +44,7 @@ public partial class CustomerPage:AppComponentBase
         _customerProvider = async req =>
         {
             _isLoading = true;
-
+            StateHasChanged();
             try
             {
                 var query = new Dictionary<string, object?>()

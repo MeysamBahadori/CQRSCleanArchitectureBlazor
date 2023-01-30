@@ -20,11 +20,11 @@
 
     <div class="page-row">
         <h1 class="page-title">Customers</h1>
-        <BitButton OnClick="CreateProduct">Add customer</BitButton>
+        <BitButton OnClick="WrapHandled(CreateProduct)">Add customer</BitButton>
     </div>
     <div class="grid">
         <BitDataGrid @ref="_dataGrid" ItemsProvider="_customerProvider" TGridItem="CustomerDto" ResizableColumns="true" Pagination="_pagination">
-            <BitDataGridPropertyColumn Title="Name" Property="c => c!.Firstname" Sortable="true" Class="column1">
+            <BitDataGridPropertyColumn Title="Name" Property="c => c!.Firstname" Class="column1">
                 <ColumnOptions>
                     <BitSearchBox @bind-Value="CustomerNameFilter"
                                   Placeholder="Search..."
@@ -32,7 +32,12 @@
                 </ColumnOptions>
             </BitDataGridPropertyColumn>
 
-            <BitDataGridPropertyColumn Title="Last Name" Property="c => c!.Lastname" Sortable="true" Align="BitDataGridAlign.Left" />
+            <BitDataGridPropertyColumn Title="Last Name" Property="c => c!.Lastname" />
+            <BitDataGridPropertyColumn Title="Last Name" Property="c => c!.DateOfBirth"  />
+            <BitDataGridPropertyColumn Title="Last Name" Property="c => c!.Email"  />
+            <BitDataGridPropertyColumn Title="Last Name" Property="c => c!.PhoneNumber" />
+            <BitDataGridPropertyColumn Title="Last Name" Property="c => c!.BankAccountNumber"  />
+
             <BitDataGridTemplateColumn Title="Actions" Align="BitDataGridAlign.Center" Context="customer">
                 <BitIconButton Style="color:#605E5C;" IconName="BitIconName.Edit" OnClick="() => EditCustomer(customer!)" Title="Edit" />
                 <BitIconButton Style="color:#605E5C;" IconName="BitIconName.Delete" OnClick="(() => DeleteCustomer(customer!))" Title="Delete" />

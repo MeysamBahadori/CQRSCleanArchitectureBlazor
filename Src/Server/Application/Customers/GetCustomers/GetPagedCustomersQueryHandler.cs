@@ -27,7 +27,7 @@ public class GetPagedCustomersQueryHandler : IRequestHandler<GetPagedCustomersQu
 
         int totalCount = query.Count();
 
-        query = query.Skip(request.SkipCount * request.MaxResultCount).Take(request.MaxResultCount);
+        query = query.Skip(request.SkipCount).Take(request.MaxResultCount).OrderBy(c=>c.DateOfBirth);
 
         //for avoid "IQueryable doesn't implement IAsyncEnumerable exception" on unit test
         var data =await Task.FromResult(query.ToArray());
